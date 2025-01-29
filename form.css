@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* background: linear-gradient(45deg, #ff0066, #00ccff); */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("images/formbackground.webp");
+    opacity: 01;
+    /* opacity: 0.9;  */
+    /* for transparent box*/
+    background-size: cover;
+
+}
+
+.container {
+    /* background: rgba(255, 255, 255, 0.1); */
+    background: transparent;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: relative;
+    animation: rotate-scale 9s infinite linear;
+    margin: 0.9rem;
+
+}
+
+
+h1 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #ff99ff;
+    animation: neon-text 2s infinite alternate;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.829);
+}
+
+/* button {
+    background: transparent;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #00ccff, #ff0066);
+    border-image-slice: 1;
+    background: rgba(255, 255, 255, 0.);
+    color: #fff;
+
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+
+} */
+
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: linear-gradient(45deg, #ff0066, #00ccff);
+
+    border: 2.5px solid transparent;
+
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    animation: button-pulse 1s infinite alternate;
+
+}
+
+button:hover {
+    background: linear-gradient(45deg, #00ccff, #ff0066);
+    animation: none;
+}
+
+
+
+
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -50px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    align-content: center;
+    animation: float 10s infinite ease-in-out;
+
+}
+
+.lastbubble {
+
+    font-size: 7px;
+}
+
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(-300px) translateX(50px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-500px) translateX(-50px);
+        opacity: 0;
+    }
+}
+
+@keyframes neon-text {
+    0% {
+        text-shadow: 0 0 10px #ff33cc, 0 0 20px #ff33cc, 0 0 30px #ff33cc;
+    }
+
+    100% {
+        text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+    }
+}
+
+@keyframes button-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes rotate-scale {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    33% {
+        transform: rotate(5deg) scale(1.01);
+    }
+
+    66% {
+        transform: rotate(-5deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.bubble:nth-child(odd) {
+    width: 40px;
+    height: 40px;
+    animation-duration: 8s;
+}
+
+.bubble:nth-child(even) {
+    width: 30px;
+    height: 30px;
+    animation-duration: 12s;
+}
+
+.txt {
+
+    color: transparent;
+    background: linear-gradient(to right, rgb(245, 3, 3), rgb(3, 231, 22));
+    -webkit-background-clip: text;
+    /* For WebKit browsers */
+    background-clip: text;
+}
+
+
+
+
+
+
