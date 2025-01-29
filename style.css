@@ -662,12 +662,12 @@ section {
     }
 
     50% {
-        transform: translateY(290px) translateX(-0px)scale(2);
+        transform: translateY(260px) translateX(-0px)scale(2);
         opacity: 1;
     }
 
     100% {
-        transform: translateY(290px) translateX(-300px);
+        transform: translateY(260px) translateX(-300px);
         opacity: 0;
     }
 }
@@ -679,12 +679,12 @@ section {
     }
 
     50% {
-        transform: translateY(-270px) translateX(-0px)scale(2);
+        transform: translateY(-260px) translateX(-0px)scale(2);
         opacity: 1;
     }
 
     100% {
-        transform: translateY(-270px) translateX(300px);
+        transform: translateY(-260px) translateX(300px);
         opacity: 0.5;
     }
 }
