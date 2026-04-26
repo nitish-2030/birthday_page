@@ -1,52 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Login — Birthday Bash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="form.css">
 </head>
-
 <body data-page="form">
-    <div class="container">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form><p id="message"></p>
-        <div class="bubbles">
-            <div class="bubble" style="left: 10%; animation-delay: 0s;">
-                <div class="txt">_v</div>
-            </div>
-            <div class="bubble" style="left: 20%; animation-delay: 1s;">
-                <div class="txt">I</div>
-            </div>
-            <div class="bubble" style="left: 30%; animation-delay: 2s;">
-                <div class="txt">s</div>
-            </div>
-            <div class="bubble" style="left: 40%; animation-delay: 3s;">
-                <div class="txt">u</div>
-            </div>
-            <div class="bubble" style="left: 50%; animation-delay: 4s;">
-                <div class="txt">a</div>
-            </div>
-            <div class="bubble" style="left: 60%; animation-delay: 5s;">
-                <div class="txt">l</div>
-            </div>
-            <div class="bubble" style="left: 01%; animation-delay: 6s;">
-                <div class="txt">s</div>
-            </div>
-            <div class="bubble lastbubble" style="left: 80%; animation-delay: 7s;">
-                <div class="txt">_shots_</div>
-            </div>
 
+<canvas id="bgCanvas"></canvas>
 
+<div class="page-wrap">
+    <div class="left-panel">
+        <div class="left-content">
+            <div class="tag">✦ A Special Celebration</div>
+            <h2 class="big-text">Happy<br>Birthday<br><em>Shivam</em></h2>
+            <p class="left-sub">Login to enter the celebration zone 🎉</p>
         </div>
     </div>
-    
-    <script src="script.js"></script>
-</body>
 
+    <div class="right-panel">
+        <div class="container">
+            <div class="form-head">
+                <div class="icon-ring">🎂</div>
+                <h1>Welcome Back</h1>
+                <p>Enter your credentials to join</p>
+            </div>
+
+            <form id="loginForm" autocomplete="off">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="nitish" required>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Enter Party</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+
+            <p id="message"></p>
+            <p class="made-by">Made with ❤️ by <strong>Nitish</strong></p>
+        </div>
+    </div>
+</div>
+
+<style>
+#portal-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(8, 4, 20, 0.95);
+}
+#portal-overlay canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.portal-text { position: relative; z-index: 2; text-align: center; animation: portalPulse 0.8s ease infinite alternate; }
+.portal-emoji { font-size: 3.5rem; margin-bottom: 0.5rem; }
+.portal-msg { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #fff; text-shadow: 0 0 30px rgba(180,0,255,0.8); }
+@keyframes portalPulse { from { transform: scale(1); } to { transform: scale(1.06); } }
+</style>
+
+<script src="script.js"></script>
+<script>
+const c = document.getElementById("bgCanvas");
+const ctx2 = c.getContext("2d");
+c.width = window.innerWidth; c.height = window.innerHeight;
+const stars = Array.from({length: 120}, () => ({
+    x: Math.random() * c.width, y: Math.random() * c.height,
+    r: Math.random() * 1.5 + 0.3, speed: Math.random() * 0.3 + 0.05, alpha: Math.random()
+}));
+(function loop() {
+    ctx2.clearRect(0, 0, c.width, c.height);
+    ctx2.fillStyle = "#08040e"; ctx2.fillRect(0, 0, c.width, c.height);
+    [[c.width*0.2, c.height*0.4, "#ff0066"], [c.width*0.8, c.height*0.5, "#7b00ff"], [c.width*0.5, c.height*0.8, "#00ccff"]].forEach(([x,y,col]) => {
+        const g = ctx2.createRadialGradient(x,y,0,x,y,280);
+        g.addColorStop(0, col+"22"); g.addColorStop(1, "transparent");
+        ctx2.fillStyle = g; ctx2.beginPath(); ctx2.arc(x,y,280,0,Math.PI*2); ctx2.fill();
+    });
+    stars.forEach(s => {
+        s.y += s.speed; if (s.y > c.height) { s.y = 0; s.x = Math.random()*c.width; }
+        s.alpha = 0.4 + 0.6*Math.sin(Date.now()*0.001+s.x);
+        ctx2.globalAlpha = s.alpha; ctx2.fillStyle = "#fff";
+        ctx2.beginPath(); ctx2.arc(s.x,s.y,s.r,0,Math.PI*2); ctx2.fill();
+    });
+    ctx2.globalAlpha = 1; requestAnimationFrame(loop);
+})();
+window.addEventListener("resize", () => { c.width = window.innerWidth; c.height = window.innerHeight; });
+</script>
+</body>
 </html>
